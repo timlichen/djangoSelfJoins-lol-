@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FOREVER ALONE</title>
+  <style>
+    table {
+      width: 400px;
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: outset;
+      border-color: gray;
+      border-collapse: separate;
+      background-color: white;
+    }
+    table th {
+	    border-width: 1px;
+	    padding: 1px;
+	    border-style: inset;
+	    border-color: gray;
+	    background-color: white;
+	    -moz-border-radius: ;
+    }
+    table td {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>So lonely, wow, much sadness, k, such cold.</h1>
+  <div>
+    <h2>Imaginary Friends</h2>
+    <table>
+      <thead>
+        <th>
+          BONDED
+        </th>
+        <th>
+          PAIR
+        </th>
+      </thead>
+      <tbody>
+      {% for pals in LAN_PARTY %}
+        <tr>
+          <td>{{pals.templar1.name}}</td>
+          <td>{{pals.templar2.name}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
+  <div>
+    <h2>TONIGHT. YOU.</h2>
+    <form action="{% url 'createFriend' %}" method="Post">
+      {% csrf_token %}
+      <input type="text" name="name">
+      <input type="submit" value="BE MINE">
+    </form>
+  </div>
+  <h2>PLAY NICE!</h2>
+  <form action="{% url 'party_time' %}" method="Post">
+    {% csrf_token %}
+    <select name="friend1">
+      {% for pals in party %}
+        <option value = "{{pals.id}}">{{pals.name}}</option>
+      {% endfor %}
+    </select>
+    <select name="friend2">
+      {% for pals in party %}
+        <option value = "{{pals.id}}">{{pals.name}}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Begin Mind Meld">
+  </form>
+</body>
+</html>
